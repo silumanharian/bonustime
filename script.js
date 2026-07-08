@@ -1,268 +1,182 @@
-function loginID(){
+// ========================================
+// TARIK DANA
+// ========================================
 
+document.querySelectorAll(".nominal-btn").forEach(btn => {
 
-let id = document.getElementById("userID").value;
-
-
-
-if(id.trim()==""){
-
-
-alert("Silahkan masukkan ID terlebih dahulu");
-
-
-return;
-
-
-}
-
-
-
-localStorage.setItem(
-"userID",
-id
-);
-
-
-
-window.location.href="home.html";
-
-
-}
-
-function loginID(){
-
-
-let id = document.getElementById("userID").value;
-
-
-
-if(id.trim()==""){
-
-
-alert("Silahkan masukkan ID terlebih dahulu");
-
-return;
-
-
-}
-
-
-
-// simpan ID
-
-localStorage.setItem(
-"userID",
-id
-);
-
-
-
-// tampilkan loading
-
-document.getElementById("loading").style.display="flex";
-
-
-
-// pindah ke home setelah loading
-
-setTimeout(()=>{
-
-
-window.location.href="home.html";
-
-
-},1500);
-
-
-
-}
-
-// ===============================
-// TARIK DANA NOMINAL
-// ===============================
-
-
-let nominalBtn = document.querySelectorAll(".nominal-btn");
-
-
-nominalBtn.forEach(btn => {
-
-
-    btn.addEventListener("click",()=>{
-
-
-        let nominal = btn.innerText;
-
-
-        showWithdrawPopup(nominal);
-
-
+    btn.addEventListener("click", () => {
+        showWithdrawPopup(btn.innerText);
     });
-
 
 });
 
 
 
+// ========================================
+// POPUP TARIK DANA
+// ========================================
 
+function showWithdrawPopup(nominal) {
 
-function showWithdrawPopup(nominal){
+    if (document.querySelector(".popup")) return;
 
+    const popup = document.createElement("div");
 
+    popup.className = "popup";
 
-let popup = document.createElement("div");
+    popup.innerHTML = `
+        <div class="popup-box">
 
+            <i class="bi bi-wallet2"></i>
 
-popup.className="popup";
+            <h3>Tarik Dana</h3>
 
+            <p>
+                Anda memilih penarikan
+                <br>
+                <b>${nominal}</b>
+            </p>
 
+            <button id="processWithdraw">
+                LANJUTKAN
+            </button>
 
-popup.innerHTML=`
+        </div>
+    `;
 
-<div class="popup-box">
+    document.body.appendChild(popup);
 
+    // klik area luar popup
+    popup.addEventListener("click", function(e){
 
-<i class="bi bi-wallet2"></i>
+        if(e.target === popup){
 
+            closePopup();
 
-<h3>
-Tarik Dana
-</h3>
+        }
 
+    });
 
-<p>
-Anda memilih penarikan
-<br>
-<b>${nominal}</b>
-</p>
+    document
+        .getElementById("processWithdraw")
+        .addEventListener("click", function(e){
 
+            e.stopPropagation();
 
-<button id="processWithdraw">
+            processLoading(nominal);
 
-LANJUTKAN
-
-</button>
-
-
-
-</div>
-
-`;
-
-
-
-document.body.appendChild(popup);
-
-
-
-
-
-
-document
-.getElementById("processWithdraw")
-.onclick=function(){
-
-
-processLoading(nominal);
-
-
-};
-
-
+        });
 
 }
 
 
 
-
+// ========================================
+// LOADING
+// ========================================
 
 function processLoading(nominal){
 
+    const popup = document.querySelector(".popup");
 
+    popup.innerHTML = `
+        <div class="popup-box">
 
-let popup=document.querySelector(".popup");
+            <div class="loader"></div>
 
+            <h3>Memproses...</h3>
 
-popup.innerHTML=`
+            <p>Mohon tunggu sebentar...</p>
 
-<div class="popup-box">
+        </div>
+    `;
 
+    setTimeout(()=>{
 
-<div class="loader"></div>
+        popup.innerHTML=`
 
+            <div class="popup-box">
 
-<h3>
-Memproses...
-</h3>
+                <i class="bi bi-check-circle-fill"
+                style="font-size:55px;color:#2ecc71"></i>
 
+                <h3>Berhasil Diproses</h3>
 
-<p>
-Mohon tunggu sebentar
-</p>
+                <p>
+                    Penarikan <b>${nominal}</b><br>
+                    Silakan aktivasi akun
+                </p>
 
+                <button id="btnWebsite">
+                    OK
+                </button>
 
+            </div>
 
-</div>
+        `;
 
-`;
+        document
+        .getElementById("btnWebsite")
+        .addEventListener("click",function(e){
 
+            e.stopPropagation();
 
+            goToWebsite();
 
+        });
 
-setTimeout(()=>{
-
-
-popup.innerHTML=`
-
-<div class="popup-box">
-
-
-<i class="bi bi-check-circle-fill"
-style="color:#2ecc71;font-size:50px">
-</i>
-
-
-
-<h3>
-Berhasil Diproses
-</h3>
-
-
-<p>
-Penarikan ${nominal}
-sedang diverifikasi
-</p>
-
-
-
-<button onclick="closePopup()">
-
-OK
-
-</button>
-
-
-
-</div>
-
-`;
-
-
-
-},2000);
-
-
+    },2000);
 
 }
 
 
 
+// ========================================
+// CLOSE POPUP
+// ========================================
 
 function closePopup(){
 
+    const popup=document.querySelector(".popup");
 
-document.querySelector(".popup").remove();
+    if(!popup) return;
 
+    popup.classList.add("hide");
+
+    setTimeout(()=>{
+
+        popup.remove();
+
+    },350);
+
+}
+
+
+
+// ========================================
+// WEBSITE
+// ========================================
+
+function goToWebsite(){
+
+    const popup=document.querySelector(".popup");
+
+    if(popup){
+
+        popup.classList.add("hide");
+
+        setTimeout(()=>{
+
+            popup.remove();
+
+            window.location.href="https://pagarnaga.me/";
+
+        },350);
+
+    }else{
+
+        window.location.href="https://pagarnaga.me/";
+
+    }
 
 }
