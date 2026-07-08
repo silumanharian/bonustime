@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Welcome</title>
+
+
+<link 
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+rel="stylesheet">
+
+
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+
+<body>
+
+
+<div class="login-page">
+
+
+    <div class="login-box">
+
+
+        <!-- LOGO -->
+
+        <div class="logo">
+
+            <i class="bi bi-wallet2"></i>
+
+        </div>
+
+
+
+        <h2>
+            Selamat Datang
+        </h2>
+
+
+        <p>
+            Masukkan ID Anda untuk melanjutkan
+        </p>
+
+
+
+        <!-- INPUT ID -->
+
+
+        <div class="input-box">
+
+
+            <i class="bi bi-person-badge"></i>
+
+
+            <input 
+            type="text"
+            id="userID"
+            placeholder="Masukkan ID Anda"
+            >
+
+
+        </div>
+
+
+
+
+        <!-- BUTTON -->
+
+
+        <button 
+        onclick="loginID()"
+        class="login-btn">
+
+            MASUK
+
+        </button>
+
+
+
+
+        <small>
+            ID wajib diisi
+        </small>
+
+
+
+    </div>
+
+
+
+</div>
+
+<!-- LOADING SCREEN -->
+
+<div class="loading-screen" id="loading">
+
+    <div class="loading-content">
+
+        <div class="loading-logo">
+
+            <i class="bi bi-wallet2"></i>
+
+        </div>
+
+
+        <h3>
+            Menyiapkan Akun
+        </h3>
+
+
+        <p>
+            Mohon tunggu...
+        </p>
+
+
+        <div class="loader"></div>
+
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
