@@ -67,9 +67,7 @@ Total Saldo
 </span>
 
 
-<h1>
-Rp355.806
-</h1>
+<h1 id="balanceAmount">Rp0</h1>
 
 
 <small>
@@ -264,61 +262,6 @@ Misi harian selesai
 
 
 
-
-
-
-<!-- NAV -->
-
-
-<nav class="bottom-nav">
-
-
-<div class="active">
-
-<i class="bi bi-house-fill"></i>
-
-<small>
-Home
-</small>
-
-</div>
-
-
-
-<div>
-
-<i class="bi bi-wallet2"></i>
-
-<small>
-Saldo
-</small>
-
-</div>
-
-
-
-<div>
-
-<i class="bi bi-person-circle"></i>
-
-<small>
-Akun
-</small>
-
-</div>
-
-
-</nav>
-
-
-
-
-
-</div>
-
-
-
-
 <script>
 
 
@@ -337,7 +280,42 @@ document.getElementById("username").innerHTML=user;
 }
 
 
+// ==============================
+// ANIMASI SALDO
+// ==============================
 
+function animateBalance(target) {
+
+    const balance = document.getElementById("balanceAmount");
+
+    if (!balance) return;
+
+    let start = 0;
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+
+        const value = Math.floor(progress * target);
+
+        balance.textContent =
+            "Rp" + value.toLocaleString("id-ID");
+
+        if (progress < 1) {
+
+            requestAnimationFrame(update);
+
+        }
+
+    }
+
+    requestAnimationFrame(update);
+
+}
+
+animateBalance(355806);
 </script>
 
 
