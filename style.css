@@ -81,7 +81,7 @@ background:
 linear-gradient(
 135deg,
 #5d8cff,
-#8c5cff
+#f2ff37
 );
 
 
@@ -200,8 +200,8 @@ background:
 
 linear-gradient(
 90deg,
-#5d8cff,
-#8c5cff
+#6a94ff,
+#fcff61
 );
 
 
@@ -1540,5 +1540,271 @@ color:#666;
 color:#4d8cff;
 
 font-size:20px;
+
+}
+
+/* ==========================
+      MISSION PAGE
+========================== */
+
+.mission-hero{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:22px;
+
+border-radius:22px;
+
+background:linear-gradient(135deg,#5d8cff,#8c5cff);
+
+color:#fff;
+
+box-shadow:0 10px 25px rgba(80,100,255,.25);
+
+margin-bottom:20px;
+
+}
+
+.mission-hero h2{
+
+margin-bottom:8px;
+
+font-size:23px;
+
+}
+
+.mission-hero p{
+
+font-size:13px;
+
+opacity:.9;
+
+}
+
+.mission-icon{
+
+width:70px;
+height:70px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.2);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:34px;
+
+}
+
+.progress-card{
+
+background:#fff;
+
+padding:18px;
+
+border-radius:18px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.06);
+
+margin-bottom:20px;
+
+}
+
+.progress-top{
+
+display:flex;
+justify-content:space-between;
+
+margin-bottom:12px;
+
+font-weight:bold;
+
+}
+
+.progress-bar{
+
+height:12px;
+
+background:#ececec;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+.progress-fill{
+
+width:40%;
+
+height:100%;
+
+background:linear-gradient(90deg,#5d8cff,#8c5cff);
+
+border-radius:20px;
+
+}
+
+.mission-list{
+
+display:flex;
+
+flex-direction:column;
+
+gap:14px;
+
+}
+
+.mission-card{
+
+background:#fff;
+
+border-radius:18px;
+
+padding:15px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 5px 15px rgba(0,0,0,.06);
+
+}
+
+.mission-left{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+.done-btn{
+
+border:none;
+
+background:#2ecc71;
+
+color:#fff;
+
+padding:8px 18px;
+
+border-radius:20px;
+
+font-weight:bold;
+
+}
+
+.go-btn{
+
+border:none;
+
+background:#4d8cff;
+
+color:#fff;
+
+padding:8px 18px;
+
+border-radius:20px;
+
+font-weight:bold;
+
+}
+
+/* =====================
+   POPUP ANIMATION
+===================== */
+/* =====================
+   POPUP
+===================== */
+
+.popup{
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:9999;
+
+    opacity:1;
+    visibility:visible;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease,
+        background .35s ease;
+}
+
+.popup-box{
+
+    width:300px;
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    text-align:center;
+
+    transform:scale(1);
+
+    transition:
+        transform .35s ease,
+        opacity .35s ease;
+
+    animation:popupShow .25s ease;
+
+}
+
+
+
+/* Saat popup ditutup */
+
+.popup.hide{
+
+    opacity:0;
+    visibility:hidden;
+    background:rgba(0,0,0,0);
+
+}
+
+.popup.hide .popup-box{
+
+    opacity:0;
+    transform:scale(.85);
+
+}
+
+
+
+/* Animasi muncul */
+
+@keyframes popupShow{
+
+    from{
+
+        opacity:0;
+        transform:scale(.85);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
 
 }
