@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Home</title>
+<title>Welcome</title>
 
 
 <link 
@@ -23,294 +23,111 @@ rel="stylesheet">
 <body>
 
 
-<div class="mobile-app">
+<div class="login-page">
 
 
-<!-- HEADER -->
+    <div class="login-box">
 
-<header class="home-top">
 
-<div>
+        <!-- LOGO -->
 
-<h3>Halo, <span id="username">User</span> 👋</h3>
-<p>Selamat datang</p>
+        <div class="logo">
 
-</div>
+            <i class="bi bi-wallet2"></i>
 
-<button class="logout-btn" onclick="logout()">
-    <i class="bi bi-box-arrow-right"></i>
-</button>
-
-</header>
+        </div>
 
 
 
+        <h2>
+            Selamat Datang
+        </h2>
 
 
-<!-- SALDO -->
-
-
-<section class="home-balance">
-
-
-<div>
-
-
-<span>
-Total Saldo
-</span>
-
-
-<h1 id="balanceAmount">Rp0</h1>
-
-
-<small>
-Saldo tersedia
-</small>
-
-
-</div>
+        <p>
+            Masukkan ID Anda untuk melanjutkan
+        </p>
 
 
 
-<div class="balance-icon">
-
-<i class="bi bi-wallet2"></i>
-
-</div>
+        <!-- INPUT ID -->
 
 
-</section>
+        <div class="input-box">
+
+
+            <i class="bi bi-person-badge"></i>
+
+
+            <input 
+            type="text"
+            id="userID"
+            placeholder="Masukkan ID Anda"
+            >
+
+
+        </div>
 
 
 
 
+        <!-- BUTTON -->
+
+
+        <button 
+        onclick="loginID()"
+        class="login-btn">
+
+            MASUK
+
+        </button>
 
 
 
-<!-- MENU -->
 
-
-<h4>
-Menu
-</h4>
-
-
-
-<section class="menu-grid">
+        <small>
+            ID wajib diisi
+        </small>
 
 
 
-<div class="menu-card"
-onclick="location.href='withdraw.html'">
+    </div>
 
-
-<div class="menu-icon blue">
-
-<i class="bi bi-cash-stack"></i>
-
-</div>
-
-
-<b>
-Tarik Dana
-</b>
 
 
 </div>
 
+<!-- LOADING SCREEN -->
+
+<div class="loading-screen" id="loading">
+
+    <div class="loading-content">
+
+        <div class="loading-logo">
+
+            <i class="bi bi-wallet2"></i>
+
+        </div>
 
 
+        <h3>
+            Menyiapkan Akun
+        </h3>
 
 
-
-<div class="menu-card"
-onclick="location.href='bonus.html'">
-
-
-<div class="menu-icon purple">
-
-<i class="bi bi-gift"></i>
-
-</div>
+        <p>
+            Mohon tunggu...
+        </p>
 
 
-<b>
-Bonus
-</b>
+        <div class="loader"></div>
 
 
-</div>
-
-
-
-
-
-
-<div class="menu-card"
-onclick="location.href='mission.html'">
-
-
-<div class="menu-icon orange">
-
-<i class="bi bi-list-check"></i>
+    </div>
 
 </div>
-
-
-<b>
-Misi
-</b>
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<!-- PROMO -->
-
-
-<h4>
-Promo Hari Ini
-</h4>
-
-
-
-<section class="promo-home">
-
-
-<div>
-
-
-<i class="bi bi-fire"></i>
-
-
-<strong>
-Reward Spesial
-</strong>
-
-
-<p>
-Selesaikan misi dan dapatkan hadiah menarik
-</p>
-
-
-</div>
-
-
-<button>
-Lihat
-</button>
-
-
-</section>
-
-
-
-
-
-
-
-
-<!-- AKTIVITAS -->
-
-
-<h4>
-Aktivitas Terbaru
-</h4>
-
-
-<section class="activity-box">
-
-
-<div>
-
-<i class="bi bi-check-circle-fill"></i>
-
-Bonus berhasil diterima
-
-</div>
-
-
-
-<div>
-
-<i class="bi bi-check-circle-fill"></i>
-
-Misi harian selesai
-
-</div>
-
-
-</section>
-
 
 <script src="script.js"></script>
-
-<script>
-
-
-// ambil ID dari login
-
-
-let user = localStorage.getItem("userID");
-
-
-
-if(user){
-
-document.getElementById("username").innerHTML=user;
-
-
-}
-
-
-// ==============================
-// ANIMASI SALDO
-// ==============================
-
-function animateBalance(target) {
-
-    const balance = document.getElementById("balanceAmount");
-
-    if (!balance) return;
-
-    let start = 0;
-    const duration = 1800;
-    const startTime = performance.now();
-
-    function update(currentTime) {
-
-        const progress = Math.min((currentTime - startTime) / duration, 1);
-
-        const value = Math.floor(progress * target);
-
-        balance.textContent =
-            "Rp" + value.toLocaleString("id-ID");
-
-        if (progress < 1) {
-
-            requestAnimationFrame(update);
-
-        }
-
-    }
-
-    requestAnimationFrame(update);
-
-}
-
-animateBalance(355806);
-</script>
-
 
 
 </body>
