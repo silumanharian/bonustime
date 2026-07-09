@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Welcome</title>
+<title>Home</title>
 
 
 <link 
@@ -23,111 +23,324 @@ rel="stylesheet">
 <body>
 
 
-<div class="login-page">
+<div class="mobile-app">
 
 
-    <div class="login-box">
+<!-- HEADER -->
 
+<header class="home-top">
 
-        <!-- LOGO -->
+<div>
 
-        <div class="logo">
+<h3>Halo, <span id="username">User</span> 👋</h3>
+<p>Selamat datang</p>
 
-            <i class="bi bi-wallet2"></i>
+</div>
 
-        </div>
+<button 
+type="button" 
+id="logoutBtn"
+class="logout-btn">
 
+<i class="bi bi-box-arrow-right"></i>
 
+</button>
 
-        <h2>
-            Selamat Datang
-        </h2>
-
-
-        <p>
-            Masukkan ID Anda untuk melanjutkan
-        </p>
-
-
-
-        <!-- INPUT ID -->
-
-
-        <div class="input-box">
-
-
-            <i class="bi bi-person-badge"></i>
-
-
-            <input 
-            type="text"
-            id="userID"
-            placeholder="Masukkan ID Anda"
-            >
-
-
-        </div>
+</header>
 
 
 
 
-        <!-- BUTTON -->
+
+<!-- SALDO -->
 
 
-        <button 
-        onclick="loginID()"
-        class="login-btn">
-
-            MASUK
-
-        </button>
+<section class="home-balance">
 
 
+<div>
 
 
-        <small>
-            ID wajib diisi
-        </small>
+<span>
+Total Saldo
+</span>
 
 
+<h1 id="balanceAmount">Rp0</h1>
 
-    </div>
 
+<small>
+Saldo tersedia
+</small>
 
 
 </div>
 
-<!-- LOADING SCREEN -->
-
-<div class="loading-screen" id="loading">
-
-    <div class="loading-content">
-
-        <div class="loading-logo">
-
-            <i class="bi bi-wallet2"></i>
-
-        </div>
 
 
-        <h3>
-            Menyiapkan Akun
-        </h3>
+<div class="balance-icon">
 
-
-        <p>
-            Mohon tunggu...
-        </p>
-
-
-        <div class="loader"></div>
-
-
-    </div>
+<i class="bi bi-wallet2"></i>
 
 </div>
 
-<script src="script.js"></script>
+
+</section>
+
+
+
+
+
+
+
+<!-- MENU -->
+
+
+<h4>
+Menu
+</h4>
+
+
+
+<section class="menu-grid">
+
+
+
+<div class="menu-card"
+onclick="location.href='withdraw.html'">
+
+
+<div class="menu-icon blue">
+
+<i class="bi bi-cash-stack"></i>
+
+</div>
+
+
+<b>
+Tarik Dana
+</b>
+
+
+</div>
+
+
+
+
+
+
+<div class="menu-card"
+onclick="location.href='bonus.html'">
+
+
+<div class="menu-icon purple">
+
+<i class="bi bi-gift"></i>
+
+</div>
+
+
+<b>
+Bonus
+</b>
+
+
+</div>
+
+
+
+
+
+
+<div class="menu-card"
+onclick="location.href='mission.html'">
+
+
+<div class="menu-icon orange">
+
+<i class="bi bi-list-check"></i>
+
+</div>
+
+
+<b>
+Misi
+</b>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- PROMO -->
+
+
+<h4>
+Promo Hari Ini
+</h4>
+
+
+
+<section class="promo-home">
+
+
+<div>
+
+
+<i class="bi bi-fire"></i>
+
+
+<strong>
+Reward Spesial
+</strong>
+
+
+<p>
+Selesaikan misi dan dapatkan hadiah menarik
+</p>
+
+
+</div>
+
+
+<button>
+Lihat
+</button>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- AKTIVITAS -->
+
+
+<h4>
+Aktivitas Terbaru
+</h4>
+
+
+<section class="activity-box">
+
+
+<div>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Bonus berhasil diterima
+
+</div>
+
+
+
+<div>
+
+<i class="bi bi-check-circle-fill"></i>
+
+Misi harian selesai
+
+</div>
+
+
+</section>
+
+
+
+
+<script>
+
+
+// ambil ID dari login
+
+
+let user = localStorage.getItem("userID");
+
+
+
+if(user){
+
+document.getElementById("username").innerHTML=user;
+
+
+}
+
+
+// ==============================
+// ANIMASI SALDO
+// ==============================
+
+function animateBalance(target) {
+
+    const balance = document.getElementById("balanceAmount");
+
+    if (!balance) return;
+
+    let start = 0;
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+
+        const value = Math.floor(progress * target);
+
+        balance.textContent =
+            "Rp" + value.toLocaleString("id-ID");
+
+        if (progress < 1) {
+
+            requestAnimationFrame(update);
+
+        }
+
+    }
+
+    requestAnimationFrame(update);
+
+}
+
+animateBalance(355806);
+
+
+</script>
+<script>
+
+const logoutButton = document.getElementById("logoutBtn");
+
+
+logoutButton.onclick = function(){
+
+    alert("Tombol logout bekerja");
+
+
+    localStorage.removeItem("userID");
+
+
+    setTimeout(()=>{
+
+        window.location.replace("index.html");
+
+    },500);
+
+
+}
+
+
+</script>
 
 
 </body>
