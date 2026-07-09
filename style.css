@@ -1831,3 +1831,31 @@ body.fade-out{
         opacity: 2;
     }
 }
+.logout-btn{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.logout-btn:hover{
+
+    transform:scale(1.05);
+
+    background:#dc2626;
+
+}
