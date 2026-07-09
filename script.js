@@ -265,3 +265,17 @@ function goToWebsite(){
     }
 
 }
+
+// ========================================
+// PAGE TRANSITION
+// ========================================
+
+function goPage(url){
+
+    document.body.classList.add("fade-out");
+
+    setTimeout(() => {
+        window.location.href = url;
+    }, 300);
+
+}
