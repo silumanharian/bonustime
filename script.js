@@ -279,3 +279,43 @@ function goPage(url){
     }, 300);
 
 }
+
+// ========================================
+// LOGIN PROTECTION
+// ========================================
+
+(function () {
+
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Halaman yang boleh dibuka tanpa login
+    const publicPages = [
+        "",
+        "index.html"
+    ];
+
+    if (publicPages.includes(currentPage)) return;
+
+    const userID = localStorage.getItem("userID");
+
+    if (!userID) {
+
+        window.location.replace("index.html");
+
+    }
+
+})();
+
+// ========================================
+// LOGOUT
+// ========================================
+
+function logout() {
+
+    if (!confirm("Yakin ingin keluar?")) return;
+
+    localStorage.removeItem("userID");
+
+    window.location.replace("index.html");
+
+}
