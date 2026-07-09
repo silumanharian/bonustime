@@ -304,20 +304,26 @@ function goPage(url){
 
     }
 
+    
 })();
 
 // ========================================
 // LOGOUT
 // ========================================
 
-window.logout = function () {
+function logout(){
 
     const ok = confirm("Yakin ingin keluar?");
 
-    if (!ok) return;
+
+    if(!ok){
+        return;
+    }
+
 
     localStorage.removeItem("userID");
 
-    window.location.href = "index.html";
 
-};
+    window.location.replace("index.html");
+
+}
