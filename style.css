@@ -1808,3 +1808,26 @@ font-weight:bold;
     }
 
 }
+
+/* =====================
+   PAGE TRANSITION
+===================== */
+
+body{
+    opacity: 0;
+    animation: fadeIn .9s ease forwards;
+}
+
+body.fade-out{
+    opacity: 0;
+    transition: opacity .9s ease;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 2;
+    }
+}
