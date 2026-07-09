@@ -310,12 +310,14 @@ function goPage(url){
 // LOGOUT
 // ========================================
 
-function logout() {
+window.logout = function () {
 
-    if (!confirm("Yakin ingin keluar?")) return;
+    const ok = confirm("Yakin ingin keluar?");
+
+    if (!ok) return;
 
     localStorage.removeItem("userID");
 
-    window.location.replace("index.html");
+    window.location.href = "index.html";
 
-}
+};
